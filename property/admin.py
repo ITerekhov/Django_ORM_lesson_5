@@ -3,4 +3,7 @@ from django.contrib import admin
 from .models import Flat
 
 
-admin.site.register(Flat)
+class FlatAmin(admin.ModelAdmin):
+    search_fields = ('owner', 'town', 'address',)
+
+admin.site.register(Flat, FlatAmin)
