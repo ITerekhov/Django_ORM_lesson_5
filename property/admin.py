@@ -8,6 +8,7 @@ class FlatAmin(admin.ModelAdmin):
     readonly_fields = ['created_at']
     list_display = ('town', 'address', 'price', 'new_building', 'construction_year',)
     list_editable = ('new_building',)
+    list_filter = ('new_building',)
 
 
 admin.site.register(Flat, FlatAmin)
