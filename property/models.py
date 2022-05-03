@@ -10,7 +10,7 @@ class User(User):
 
 class Flat(models.Model):
     owner = models.CharField('ФИО владельца', max_length=200)
-    owner_pure_phone = PhoneNumberField(verbose_name='Нормализированный номер владельца', blank=True)
+    owners_phonenumber = models.CharField('Номер владельца', max_length=20)
     created_at = models.DateTimeField(
         'Когда создано объявление',
         default=timezone.now,
@@ -58,6 +58,10 @@ class Flat(models.Model):
         verbose_name= 'Понравилось пользователям',
         related_name='Понравившиеся объекты+',
         blank=True,
+        )
+    owner_pure_phone = PhoneNumberField(
+        verbose_name = 'Нормализованный номер владельца',
+        blank=True
         )
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'

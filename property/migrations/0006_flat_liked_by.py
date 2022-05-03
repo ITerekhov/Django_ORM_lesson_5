@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='flat',
             name='liked_by',
-            field=models.ManyToManyField(related_name='_flat_liked_by_+', to='property.User', verbose_name='Понравилось пользователям'),
+            field=models.ManyToManyField(related_name='_flat_liked_by_+', to='property.User', verbose_name='Понравилось пользователям', blank=True),
         ),
     ]
