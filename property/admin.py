@@ -9,6 +9,7 @@ class FlatAmin(admin.ModelAdmin):
     list_display = ('town', 'address', 'price', 'new_building', 'construction_year',)
     list_editable = ('new_building',)
     list_filter = ('new_building',)
+    raw_id_fields = ('liked_by',)
 
 class ComplaintAdmin(admin.ModelAdmin):
     search_fields = ('user_name', 'flat',)
