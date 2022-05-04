@@ -7,7 +7,7 @@ def filled_new_building_field(apps, schema_editor):
         flat.new_building = flat.construction_year >= 2015
         flat.save()
 
-        
+
 class Migration(migrations.Migration):
 
     dependencies = [

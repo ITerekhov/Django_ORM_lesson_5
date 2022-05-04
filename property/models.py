@@ -8,6 +8,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 class User(User):
     name = models.CharField('Имя', max_length=200, unique=True)
 
+
 class Flat(models.Model):
     created_at = models.DateTimeField(
         'Когда создано объявление',
@@ -16,7 +17,7 @@ class Flat(models.Model):
 
     description = models.TextField('Текст объявления', blank=True)
     price = models.IntegerField('Цена квартиры', db_index=True)
-    new_building  = models.BooleanField('Здание построенно недавно', null=True)
+    new_building = models.BooleanField('Здание построенно недавно', null=True)
     town = models.CharField(
         'Город, где находится квартира',
         max_length=50,
@@ -52,8 +53,8 @@ class Flat(models.Model):
         db_index=True)
 
     liked_by = models.ManyToManyField(
-        User, 
-        verbose_name= 'Понравилось пользователям',
+        User,
+        verbose_name='Понравилось пользователям',
         related_name='flats_liked',
         blank=True,
         )
@@ -65,17 +66,20 @@ class Flat(models.Model):
 class Complaint(models.Model):
     user_name = models.ForeignKey(
         User,
-        verbose_name='Кто жаловался', 
-        related_name='user_complaints', 
+        verbose_name='Кто жаловался',
+        related_name='user_complaints',
+        on_delete=models.CASCADE
+        )
+    flat = models.ForeignKey(
+        Flat,
+        verbose_name='Квартира, на которую пожаловались',
+        related_name='flat_complaints',
         on_delete=models.CASCADE)
-    flat = models.ForeignKey(Flat, 
-    verbose_name='Квартира, на которую пожаловались', 
-    related_name='flat_complaints',
-    on_delete=models.CASCADE)
     text = models.TextField('Текст')
 
+
 class Owner(models.Model):
-    full_name=  models.CharField(
+    full_name = models.CharField(
         verbose_name='ФИО владельца',
         max_length=200,
         db_index=True
@@ -86,7 +90,7 @@ class Owner(models.Model):
         db_index=True
         )
     owner_pure_phone = PhoneNumberField(
-        verbose_name = 'Нормализованный номер владельца',
+        verbose_name='Нормализованный номер владельца',
         blank=True,
         )
     flats = models.ManyToManyField(
