@@ -54,10 +54,10 @@ class Flat(models.Model):
     liked_by = models.ManyToManyField(
         User, 
         verbose_name= 'Понравилось пользователям',
-        related_name='Понравившиеся объекты+',
+        related_name='flats_liked',
         blank=True,
         )
-        
+
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
 
@@ -92,7 +92,7 @@ class Owner(models.Model):
     flats = models.ManyToManyField(
         Flat,
         verbose_name='Квартиры в собственности',
-        related_name='Собственники квартиры+',
+        related_name='owners',
         )
 
     def __str__(self):
