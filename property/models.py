@@ -5,10 +5,6 @@ from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 
 
-class User(User):
-    name = models.CharField('Имя', max_length=200, unique=True)
-
-
 class Flat(models.Model):
     created_at = models.DateTimeField(
         'Когда создано объявление',
