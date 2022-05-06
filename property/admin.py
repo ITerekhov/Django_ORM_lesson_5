@@ -25,9 +25,9 @@ class FlatAmin(admin.ModelAdmin):
 
 
 class ComplaintAdmin(admin.ModelAdmin):
-    search_fields = ('user_name', 'flat',)
-    list_display = ('user_name', 'flat', 'text',)
-    raw_id_fields = ('flat', 'user_name',)
+    search_fields = ('user', 'flat',)
+    list_display = ('user', 'flat', 'text',)
+    raw_id_fields = ('flat', 'user',)
 
 
 class OwnerAdmin(admin.ModelAdmin):
