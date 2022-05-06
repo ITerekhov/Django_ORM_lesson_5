@@ -1,11 +1,9 @@
 from django.db import migrations
-
+from django.db.models import F
 
 def filled_new_building_field(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
-        flat.new_building = flat.construction_year >= 2015
-        flat.save()
+    Flat.objects.update(new_building = F('construction_year') >= 2015)
 
 
 class Migration(migrations.Migration):
